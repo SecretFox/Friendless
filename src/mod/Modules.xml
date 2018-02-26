@@ -2,7 +2,7 @@
 <Root>
   <Module  name = "Friendless"
     movie       = "Friendless\Friendless.swf"
-    flags       = "GMF_CFG_STORE_USER_CONFIG | GMF_DONT_UNLOAD"
+    flags       = ""
     depth_layer = "Top"
     sub_depth   = "2"
     variable    = "Friendless"
