@@ -22,9 +22,13 @@ class com.fox.Friendless.Mod {
 	}
 
 	public function Load() {
-		SWLRP = _root["swlrp\\swlrp"];
-		com.Utils.GlobalSignal.SignalShowFriendlyMenu.Disconnect(_root.friendlymenu.SlotShowFriendlyMenu);
-		com.Utils.GlobalSignal.SignalShowFriendlyMenu.Connect(SlotShowFriendlyMenu, this);
+		if (_root.friendlymenu.SlotShowFriendlyMenu){
+			SWLRP = _root["swlrp\\swlrp"];
+			com.Utils.GlobalSignal.SignalShowFriendlyMenu.Disconnect(_root.friendlymenu.SlotShowFriendlyMenu);
+			com.Utils.GlobalSignal.SignalShowFriendlyMenu.Connect(SlotShowFriendlyMenu, this);
+		}else{
+			setTimeout(Delegate.create(this, Load), 50);
+		}
 	}
 
 	private function SlotShowFriendlyMenu(charID, name, showAtMouse ) {
