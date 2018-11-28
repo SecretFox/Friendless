@@ -10,12 +10,8 @@ class com.fox.Friendless.Mod {
 
 	public static function main(swfRoot:MovieClip):Void {
 		var s_app = new Mod(swfRoot);
-		swfRoot.onLoad = function() {
-			s_app.Load();
-		}
-		swfRoot.onUnload = function() {
-			s_app.Unload();
-		}
+		swfRoot.onLoad = function() {s_app.Load();}
+		swfRoot.onUnload = function() {s_app.Unload();}
 	}
 
 	public function Mod() {
@@ -32,22 +28,20 @@ class com.fox.Friendless.Mod {
 	}
 
 	private function SlotShowFriendlyMenu(charID, name, showAtMouse ) {
-		//Right click,proceed as normal
+		//always right click?
+		//proceed as normal
 		if (showAtMouse) {
-			if (!SWLRP) {
-				_root.friendlymenu.SlotShowFriendlyMenu(charID, name, showAtMouse);
-			}
-			//F press,with Ctrl down,proceed as normalaw
-		} else if (Key.isDown(Key.CONTROL)) {
-			if (!SWLRP) {
-				_root.friendlymenu.SlotShowFriendlyMenu(charID, name, showAtMouse);
-			}
-			//F press,with Ctrl up, not calling the original function
-		} else {
+			if (!SWLRP) _root.friendlymenu.SlotShowFriendlyMenu(charID, name, showAtMouse);
+		} 
+		//Interaction key with Ctrl down
+		else if (Key.isDown(Key.CONTROL)) {
+			if (!SWLRP)	_root.friendlymenu.SlotShowFriendlyMenu(charID, name, showAtMouse);
+		} 
+		//Interaction key with CTRL up, not calling the original function
+		//SWLRP users will still open friendlymenu, it just closes instantly
+		else {
 			//Setting player back to reticule mode after 1ms, the delay seems necessary
-			//SWLRP users will still open friendlymenu, it just closes instantly
-			setTimeout(
-			Delegate.create(this, function() {
+			setTimeout(	Delegate.create(this, function() {
 				CharacterBase.SetReticuleMode();
 			}), 1);
 		}
