@@ -35,7 +35,7 @@ class com.fox.Friendless.Mod {
 		} 
 		//Interaction key with Ctrl down
 		else if (Key.isDown(Key.CONTROL)) {
-			if (!SWLRP)	_root.friendlymenu.SlotShowFriendlyMenu(charID, name, showAtMouse);
+			if (!SWLRP) _root.friendlymenu.SlotShowFriendlyMenu(charID, name, showAtMouse);
 		} 
 		//Interaction key with CTRL up, not calling the original function
 		//SWLRP users will still open friendlymenu, it just closes instantly
